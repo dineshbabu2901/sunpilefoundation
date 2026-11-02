@@ -1,0 +1,11 @@
+/* EASY EDIT · Sun Pile brand colors. Update these variables to recolor the entire site. */
+:root {
+  --navy: #0b2439;          /* Headers, buttons and footer */
+  --navy-2: #13354c;        /* Secondary deep blue */
+  --orange: #f37a22;        /* Main orange accent */
+  --ink: #142a3a;           /* Body headings */
+  --muted: #5f6e76;         /* Descriptive text */
+  --cream: #f7f8f5;         /* Light sections */
+  --white: #ffffff;
+  --stroke: #dbe3e5;
+}

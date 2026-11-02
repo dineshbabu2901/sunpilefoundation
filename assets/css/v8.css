@@ -1,0 +1,111 @@
+/* ========================================================================
+   SUN PILE FOUNDATION — V8 / MOTION STUDIO
+   Edit motion styling here. Core colors: assets/css/theme.css.
+   Designed to run on static hosting, no external animation dependencies.
+   A11Y: All animations pause for prefers-reduced-motion.
+======================================================================== */
+:root {--v8-warm:#ff9954;--v8-glow:rgba(247,132,43,.45);--v8-chat-shadow:0 30px 85px rgba(4,23,36,.32)}
+/* 1. Sharper hero photography — deliberately lighter than V7. */
+.hero{background:linear-gradient(123deg,#082137 0%,#102f44 70%,#0a2537 100%)}
+.hero:before{opacity:.14}
+.hero-media:after{background:linear-gradient(90deg,rgba(8,31,47,.3),transparent 36%),linear-gradient(0deg,rgba(6,24,37,.56),transparent 32%) !important}
+.hero-slide img{filter:saturate(1.13) contrast(1.04) brightness(1.065);}
+.hero-slide.is-active img{animation:none}
+.hero-copy{position:relative;isolation:isolate;}
+.hero-copy > :not(.v8-hero-blueprint) {position:relative;z-index:2}
+/* Engineering grid/blueprint is behind the heading, not on top of it. */
+.v8-hero-blueprint{position:absolute;inset:0 0 0 2%;pointer-events:none;z-index:-1;opacity:.82;overflow:hidden}
+.v8-hero-blueprint:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(115,183,213,.085) 1px,transparent 1px),linear-gradient(90deg,rgba(115,183,213,.085) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(90deg,transparent 20%,#000 100%)}
+.v8-orbit{position:absolute;border-radius:50%;right:-13%;top:4%;width:360px;aspect-ratio:1;border:1px dashed rgba(120,190,215,.21);box-shadow:0 0 0 46px rgba(72,139,169,.025),0 0 0 92px rgba(87,145,174,.018)}
+.v8-orbit:nth-child(2){width:240px;right:-5%;top:14%;border-style:solid;border-color:rgba(255,165,92,.15)}
+.v8-scan{position:absolute;right:8%;top:10%;height:70%;width:1px;background:linear-gradient(transparent,rgba(255,153,84,.3),transparent);transform-origin:center}
+.v8-engineering-label{position:absolute;bottom:15%;right:8%;font-size:.65rem;letter-spacing:.22em;color:rgba(177,211,226,.28);writing-mode:vertical-rl;font-weight:900;}
+.v8-live-chip{display:inline-flex;gap:10px;align-items:center;color:#fbe0cf!important;border:1px solid rgba(248,171,104,.32);background:rgba(5,25,40,.32);padding:8px 11px;margin:16px 0 0;border-radius:100px;letter-spacing:.08em;font-size:.61rem;font-weight:900;text-transform:uppercase;max-width:max-content;}
+.v8-live-chip:before{content:"";height:7px;width:7px;border-radius:50%;background:#ff9d5b;box-shadow:0 0 0 4px rgba(255,157,91,.11)}
+/* Animation detail: live image progress marks + photograph shift. */
+.v8-slide-dots{position:absolute;z-index:7;left:22px;bottom:106px;display:flex;gap:8px;align-items:center}
+.v8-slide-dot{width:36px;height:5px;border:0;border-radius:50px;background:rgba(255,255,255,.4);padding:0;cursor:pointer;position:relative;overflow:hidden;}
+.v8-slide-dot[aria-current="true"]{background:rgba(255,255,255,.55)}
+.v8-slide-dot[aria-current="true"]:after{content:"";position:absolute;inset:0;background:#ff9d5b;transform-origin:left;animation:v8-line-progress 6.2s linear both;}
+.v8-slide-dot.is-paused:after{animation-play-state:paused}
+@keyframes v8-line-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.v8-slide-dot:hover{background:#fff}
+.v8-media-watermark{position:absolute;top:22px;right:22px;z-index:3;font-size:.65rem;text-transform:uppercase;letter-spacing:.13em;font-weight:900;color:#fff;background:rgba(6,28,45,.42);border:1px solid rgba(255,255,255,.34);padding:10px 13px;backdrop-filter:blur(6px)}
+/* Services and photo gallery: closer-to-camera hover, precise depth. */
+.service-card,.gallery-card,.field-shot,.video-card{transition:transform .35s cubic-bezier(.2,.85,.2,1),box-shadow .35s ease,border-color .35s ease}
+.service-card:hover,.video-card:hover{box-shadow:0 30px 60px rgba(7,30,48,.16)}
+.gallery-card:hover{transform:translateY(-5px);box-shadow:0 17px 37px rgba(7,30,48,.2)}
+.gallery-card img{transition:transform .8s cubic-bezier(.22,.9,.2,1),filter .4s ease}
+.gallery-card:hover img{filter:saturate(1.12);transform:scale(1.075)}
+.field-shot:hover{transform:translateY(-4px)}
+/* home media showcase — show both video clips as discoverable teasers */
+.v8-video-feature{background:#08243a;color:#fff;overflow:hidden;position:relative}
+.v8-video-feature:before{position:absolute;content:"";inset:0;pointer-events:none;opacity:.35;background:radial-gradient(circle at 15% 50%,rgba(243,122,34,.14),transparent 32%),linear-gradient(120deg,transparent,rgba(90,175,200,.09))}
+.v8-video-inner{position:relative;padding-block:92px;display:grid;grid-template-columns:minmax(230px,.8fr) minmax(0,1.2fr);gap:50px;align-items:center}
+.v8-video-copy h2{color:white;font-size:clamp(3.4rem,6vw,6.6rem);line-height:.9;text-transform:uppercase;margin:20px 0}
+.v8-video-copy h2 em{color:var(--orange);font-style:normal}
+.v8-video-copy p{color:#c1d4df;max-width:390px;font-size:.93rem;line-height:1.8}
+.v8-video-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.v8-video-tile{position:relative;overflow:hidden;border-radius:18px;min-height:365px;border:1px solid rgba(255,255,255,.17);display:block;isolation:isolate;background:#24485a}
+.v8-video-tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .7s ease}
+.v8-video-tile:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,24,36,.83),transparent 63%);z-index:0}
+.v8-video-tile:hover img{transform:scale(1.07)}
+.v8-play{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%);width:65px;height:65px;display:grid;place-items:center;border-radius:50%;background:var(--orange);font-size:1.4rem;color:var(--navy);box-shadow:0 0 0 9px rgba(255,255,255,.15);transition:transform .25s,box-shadow .25s}
+.v8-video-tile:hover .v8-play{transform:translate(-50%,-50%) scale(1.12);box-shadow:0 0 0 17px rgba(255,255,255,.11)}
+.v8-video-label{position:absolute;z-index:1;bottom:22px;left:19px;right:19px;display:flex;flex-direction:column;gap:4px}
+.v8-video-label b{font-family:var(--font-heading);font-size:1.8rem;line-height:.95}.v8-video-label small{font-size:.65rem;letter-spacing:.1em;color:#b9d0d9;font-weight:900}
+/* The video filter is a fast jump to videos, keeping all 54 photographs visible. */
+.v8-gallery-intro{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px}
+.v8-gallery-intro a{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;text-transform:uppercase;font-weight:900;letter-spacing:.07em;padding:10px 17px;border:1px solid #d4e1e1;border-radius:24px}
+.v8-gallery-intro a:hover{background:var(--navy);color:#fff}
+/* Chat assistant — deterministic browser-only FAQ, not an LLM. */
+.v8-chat-launch{position:fixed;bottom:22px;right:22px;z-index:970;display:flex;gap:11px;align-items:center;background:#f37a22;border:0;color:#10273a;border-radius:999px;padding:14px 18px;font-size:.76rem;font-weight:900;letter-spacing:.04em;box-shadow:0 14px 34px rgba(5,32,47,.25);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.v8-chat-launch:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(5,32,47,.31)}
+.v8-chat-launch svg{width:22px;height:22px;stroke-width:2}
+.v8-chat-launch:after{content:"";position:absolute;top:-2px;right:4px;width:10px;height:10px;border-radius:50%;background:#36c67a;border:2px solid white}
+.v8-chat-panel{position:fixed;right:22px;bottom:92px;z-index:980;width:min(390px,calc(100vw - 28px));max-height:min(650px,calc(100dvh - 110px));display:flex;flex-direction:column;background:#fff;color:#102a3d;border:1px solid #dce7e9;border-radius:19px;overflow:hidden;box-shadow:var(--v8-chat-shadow)}
+.v8-chat-panel[hidden],.v8-chat-launch[hidden]{display:none}
+.v8-chat-head{padding:18px 18px 15px;background:linear-gradient(135deg,#09263c,#16465e);color:white;display:flex;align-items:center;gap:11px}
+.v8-chat-avatar{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:var(--orange);color:#09263c;font-weight:900;font-size:1.25rem}
+.v8-chat-head strong{display:block;font-size:.92rem;line-height:1.2}.v8-chat-head small{font-size:.72rem;color:#d7ebf0}
+.v8-chat-close{margin-left:auto;background:none;color:white;border:1px solid rgba(255,255,255,.36);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.v8-chat-disclaimer{background:#eaf4f5;color:#516b77;padding:10px 16px;font-size:.70rem;line-height:1.45}
+.v8-chat-messages{padding:16px;overflow-y:auto;min-height:150px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+.v8-bubble{max-width:91%;font-size:.81rem;line-height:1.65;border-radius:16px;padding:11px 13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.v8-bubble.bot{align-self:flex-start;background:#f0f4f5;border-bottom-left-radius:4px}
+.v8-bubble.user{align-self:flex-end;background:#ffebda;border-bottom-right-radius:4px}
+.v8-chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:8px 15px 12px;border-top:1px solid #eef2f2}
+.v8-chat-quick button{background:#fff;border:1px solid #d8e3e3;color:#123c50;padding:7px 10px;border-radius:99px;font-size:.71rem;font-weight:800;cursor:pointer}
+.v8-chat-quick button:hover{border-color:#f37a22;background:#fff2e7}
+.v8-chat-form{display:flex;align-items:center;gap:8px;border-top:1px solid #e3eded;padding:12px;background:white}
+.v8-chat-form input{flex:1;min-width:0;border:1px solid #d8e3e3;border-radius:12px;padding:11px 12px;font-size:.82rem;outline-offset:2px;color:#102b3d}
+.v8-chat-form button{border:0;background:var(--orange);color:#08283a;width:43px;height:43px;flex:none;border-radius:12px;font-size:1.2rem;font-weight:900;cursor:pointer}
+.v8-chat-contact{display:flex;gap:6px;justify-content:space-between;padding:0 14px 12px;background:white}
+.v8-chat-contact a{font-size:.72rem;font-weight:900;color:#0a5e48;text-decoration:underline;text-underline-offset:3px}
+.v8-chat-contact a:last-child{color:#173e54}
+/* Reposition old floating buttons so assistant doesn't overlap. */
+.floating-wa{right:auto!important;left:19px!important;bottom:18px!important;z-index:740}
+.v7-floating-email{right:auto!important;left:19px!important;bottom:84px!important;z-index:740}
+/* subtle motion on engineering details */
+@media(prefers-reduced-motion:no-preference){
+ .v8-orbit{animation:v8-orbit 40s linear infinite}
+ .v8-orbit:nth-child(2){animation-direction:reverse;animation-duration:29s}
+ .v8-scan{animation:v8-scan 7s ease-in-out infinite alternate}
+ .v8-live-chip:before{animation:v8-pulse 2.5s ease-in-out infinite}
+ .v8-video-tile:nth-child(2){animation:v8-video-float 6s ease-in-out infinite alternate}
+ @keyframes v8-orbit{to{transform:rotate(360deg)}}
+ @keyframes v8-scan{to{transform:translateX(-120px)}}
+ @keyframes v8-pulse{50%{box-shadow:0 0 0 9px rgba(255,157,91,.02)}}
+ @keyframes v8-video-float{to{transform:translateY(-7px)}}
+}
+@media(max-width:960px){.v8-video-inner{grid-template-columns:1fr;gap:30px}.v8-video-cards{max-width:800px}.v8-hero-blueprint{right:0;opacity:.34}}
+@media(max-width:680px){
+ .v8-video-inner{padding-block:70px}.v8-video-cards{gap:10px}.v8-video-tile{min-height:270px}.v8-video-label b{font-size:1.37rem}.v8-play{width:50px;height:50px}
+ .v8-slide-dots{left:17px;bottom:87px}.v8-media-watermark{right:12px;top:12px;font-size:.55rem}
+ .v8-chat-launch{right:12px;bottom:14px;padding:13px 15px}.v8-chat-launch .v8-chat-label{display:none}.v8-chat-panel{right:10px;bottom:77px;max-height:calc(100dvh - 95px)}
+ .floating-wa{left:12px!important;bottom:11px!important}.v7-floating-email{left:12px!important;bottom:74px!important}
+}
+@media(prefers-reduced-motion:reduce){.v8-slide-dot[aria-current="true"]:after{animation:none;transform:scaleX(1)}.v8-orbit,.v8-scan,.v8-video-tile{animation:none!important}}
+
+/* Keep mobile headings and controls uncluttered. */
+@media(max-width:960px){.v8-engineering-label{display:none}}
